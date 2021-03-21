@@ -4,7 +4,7 @@ def user_choice():
     
     #Initial
     choice = 'WRONG'
-    acceptable_range = range(0,10)
+    acceptable_range = range(1,10)
     withing_range = False
     
     # TWO CONDITION TO CHECK
