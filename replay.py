@@ -1,3 +1,5 @@
+# Write a function that asks the player if they want to play again and returns a boolean True if they do want to play again
+
 def replay():
     loop = False
     while loop == False:
