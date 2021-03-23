@@ -16,7 +16,7 @@ def player_choice(board):
     withing_range = False
 
     while choice.isdigit() == False or withing_range == False or space_check(test_board,int(choice)) == False:
-        choice = input("Chose free position from board (1-9): ")
+        choice = input("Chose one of the free positions on the board (1-9): ")
 
         if choice.isdigit() == False:
             print("Sorry that is not digit!")
@@ -26,7 +26,7 @@ def player_choice(board):
                 if space_check(test_board,int(choice)) == False:
                     print("Sorry, position {} is taken".format(choice))
             else:
-                print('Sorry, you are out of acceptable chose 1-9')
+                print('Sorry, you are out of acceptable choose 1-9')
                 withing_range = False      
 
     return int(choice)

@@ -3,7 +3,7 @@
 # so you get a 3 by 3 board representation.
 # print('\n'*100)
 def display_board(board):
-    return print('\n'*100 + """
+    return print('\n'*5 + """
     -------------\t\t\t-------------
     | {} | {} | {} |\t\t\t| 7 | 8 | 9 |
     -------------\t\t\t-------------
