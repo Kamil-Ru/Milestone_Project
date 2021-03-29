@@ -10,25 +10,17 @@ def display_board(board):
     ------------- \t\t\t-------------
     | {} | {} | {} |\t\t\t| 1 | 2 | 3 |
     -------------\t\t\t-------------""".format(board[7],board[8],board[9],board[4],board[5], board[6], board[1], board[2], board[3]))
-    
 
 # function that can take in a player input and assign their marker as 'X' or 'O'. 
-def player_input():
-    choice = False
-
-    while choice == False:
+def player_input(): # zmiana nazwy
+    while True:
         player1 = input("Player 1: please pick a marker 'X' or 'O'\n")
-        if player1 == str('X') or player1 == str('O'):
-            choice = True
-        else:
-            choice = False
-            
-    if player1 == 'X':
-        player2 = 'O'
-    elif player1 == 'O':
-        player2 = 'X'
-    return player1, player2
-
+        if player1 == 'X':
+            player2 = 'O'
+            return player1, player2
+        elif player1 == 'O':
+            player2 = 'X'
+            return player1, player2
 
 # function that uses the random module to randomly decide which player goes first. 
 import random
@@ -42,10 +34,7 @@ def choose_first():
 
 # Function that returns a boolean indicating whether a space on the board is freely available.
 def space_check(board, position):
-    if board[position] == ' ':
-        return True
-    else:
-        return False
+    return board[position] == ' '
 
 
 # function that asks for a player's next position (as a number 1-9) and then uses the function from step 6 to check if it's a free position.
@@ -102,31 +91,21 @@ def win_check(board, mark):
     else:
         return False
 
-
 # function that checks if the board is full and returns a boolean value. 
 # True if full, 
 # False otherwise.
 def full_board_check(board):
-    for x in board:
-        if x == ' ':
-            return False
-    else:
-        return True
+    return ' ' not in board
 
 
 # function that asks the player if they want to play again and returns a boolean True if they do want to play again
 def replay():
-    loop = False
-    while loop == False:
+    while True:
         chose = input('Do you want to play again?\nType: "y" - for yes\nType: "n" - for no\n')
         if chose == 'y':
-            loop = True
             return True
-        elif chose == 'n':
-            loop = True
-            return False
         else:
-            loop = False
+            return False
 
 
 #                   GAME            

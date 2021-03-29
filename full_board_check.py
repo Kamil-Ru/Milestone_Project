@@ -2,6 +2,7 @@
 # True if full, 
 # False otherwise.
 
+
 def full_board_check(board):
     for x in board:
         if x == ' ':
@@ -9,6 +10,12 @@ def full_board_check(board):
     else:
         return True
 
+def full_board_check_2(board):
+    return ' ' not in board
+
 #  TEST
 test_board = ['O','X','O','X','O','X','O','X','O','X']
 print(full_board_check(test_board))
+
+test_board = ['O','X','O','X','O','X','O','X','O','X']
+print(full_board_check_2(test_board))
