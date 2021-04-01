@@ -2,7 +2,7 @@
 # True if full, 
 # False otherwise.
 
-
+# OLD
 def full_board_check(board):
     for x in board:
         if x == ' ':
@@ -10,6 +10,7 @@ def full_board_check(board):
     else:
         return True
 
+# NEW
 def full_board_check_2(board):
     return ' ' not in board
 

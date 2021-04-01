@@ -1,5 +1,7 @@
 # Write a function that asks the player if they want to play again and returns a boolean True if they do want to play again
 
+    #   OLD:
+
 def replay():
     loop = False
     while loop == False:
@@ -13,13 +15,13 @@ def replay():
         else:
             loop = False
 
-# print(replay())
-
+# NEW: 
 
 def replay_2():
     while True:
         chose = input('Do you want to play again?\nType: "y" - for yes\nType: "n" - for no\n')
         if chose == 'y':
-            return True
-        else:
+            return True 
+        elif chose == 'n':
             return False
+

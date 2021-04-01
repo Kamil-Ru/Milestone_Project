@@ -25,11 +25,10 @@ def player_input(): # zmiana nazwy
 # function that uses the random module to randomly decide which player goes first. 
 import random
 def choose_first():
-    a = random.randint(0, 1)
-    if a == 0:
-        return list(('Player 1', 'Player 2'))
-    elif a == 1: 
-        return list(('Player 2', 'Player 1'))
+        if random.randint(0, 1) == 1:
+            return list(('Player 1', 'Player 2'))
+        else:
+            return list(('Player 2', 'Player 1'))
 
 
 # Function that returns a boolean indicating whether a space on the board is freely available.
@@ -39,25 +38,13 @@ def space_check(board, position):
 
 # function that asks for a player's next position (as a number 1-9) and then uses the function from step 6 to check if it's a free position.
 def player_choice(board):
-    choice = ' '
-    acceptable_range = range(1,10)
-    withing_range = False
-
-    while choice.isdigit() == False or withing_range == False or space_check(board,int(choice)) == False:
-        choice = input("Chose one of the free positions on the board (1-9): ")
-
-        if choice.isdigit() == False:
-            print("Sorry, this is not a digit!")
-        elif choice.isdigit() == True:
-            if int(choice) in acceptable_range:
-                withing_range = True
-                if space_check(board,int(choice)) == False:
-                    print("Sorry, position {} is taken".format(choice))
-            else:
-                print('Sorry, you are out of acceptable choose 1-9')
-                withing_range = False      
-
-    return int(choice)
+    while True:
+        try:
+            choice = int(input("Chose one of the free positions on the board (1-9): "))
+            if choice in range(1,10) and space_check(board,choice):
+                return choice
+        except:
+            print('Sorry, you are out of acceptable choose 1-9') 
 
 
 # function that takes in the board list object, a marker ('X' or 'O'), 
@@ -103,8 +90,8 @@ def replay():
     while True:
         chose = input('Do you want to play again?\nType: "y" - for yes\nType: "n" - for no\n')
         if chose == 'y':
-            return True
-        else:
+            return True 
+        elif chose == 'n':
             return False
 
 
@@ -126,24 +113,18 @@ while game_on == True:
     else:
         p = 2
     
-    win = False
+    while full_board_check(board) == False:
 
-    while full_board_check(board) == False and win == False:
-
-        if win_check(board, players[0]) == True:
-            win = True
-            print('\n'*10 + 'Player 1 wins the game!')
-
-        elif win_check(board, players[1]) == True:
-            win = True
-            print('\n'*10 + 'Player 2 wins the game!')
-
-        elif p == 1:
+        if p == 1:
             display_board(board)
             print('Player 1, place {} on board\n'.format(players[0]))
             marker = players[0]
             board = place_marker(board, marker, player_choice(board))
             p = 2
+        
+        elif win_check(board, players[0]) == True:
+            print('\n'*10 + 'Player 1 wins the game!')
+            break
 
         elif p == 2:
             display_board(board)
@@ -151,9 +132,13 @@ while game_on == True:
             marker = players[1]
             board = place_marker(board, marker, player_choice(board))
             p = 1
-    
-    if full_board_check(board) == True:
-        print('\n'*10 + 'The board is full, no one wins.\n\n\n')
+        
+        elif win_check(board, players[1]) == True:
+            print('\n'*10 + 'Player 2 wins the game!')
+            break
+         
+        if full_board_check(board):
+            print('\n'*10 + 'The board is full, no one wins.\n\n\n')
 
     game_on = replay()
 
